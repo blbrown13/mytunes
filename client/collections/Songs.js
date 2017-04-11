@@ -3,4 +3,6 @@ var Songs = Backbone.Collection.extend({
 
   model: SongModel
 
+  // ajax request in here
+
 });
