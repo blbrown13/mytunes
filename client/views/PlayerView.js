@@ -5,17 +5,19 @@ var PlayerView = Backbone.View.extend({
   // see: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5_audio_and_video
   el: '<audio controls autoplay />',
 
+  // changed calling dequeue and setSong for ended
   initialize: function(params) {
     this.$el.on('ended', (function() {
-      // dequeue current song
-      this.$el.dequeue();
-      // play next song
-      this.setSong(this.$el);
+      this.model.ended();
     }).bind(this));
   },
 
+  // added if-statement for pausing
   setSong: function(song) {
     this.model = song;
+    if (!this.model) {
+      this.el.pause();
+    }
     this.render();
   },
 

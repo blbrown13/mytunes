@@ -5,10 +5,12 @@ var LibraryEntryView = Backbone.View.extend({
 
   template: _.template('<td>(<%= artist %>)</td><td><%= title %></td>'),
 
+  // deleted play invocation
   events: {
     'click': function() {
-      this.model.play();
+      console.log('been clicked');
       this.model.enqueue();
+      this.model.play(); // this shouldn't have to be added
     }
   },
 
